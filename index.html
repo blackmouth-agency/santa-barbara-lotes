@@ -493,6 +493,115 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 @keyframes onda{to{transform:scale(1.7);opacity:0}}
 @media (min-width:900px){.wa-flota{display:grid}}
 
+/* ---------- Cabeceras de sección ---------- */
+.cab .eyebrow + h2{margin-top:14px}
+.cab h2 + .lead{margin-top:18px}
+.regla-docs{display:grid;gap:16px;align-content:start}
+
+/* ---------- Escritorio: cada sección cabe en una pantalla ----------
+   Los tamaños verticales dependen del alto de la ventana (svh) para que
+   cada sección quepa completa en laptops de 1366×768 en adelante. */
+@media (min-width:980px){
+  :root{--pad-sec:clamp(40px,8svh,120px)}
+  .sec{padding-block:var(--pad-sec)}
+  .sec h2{font-size:clamp(36px,min(5.6vw,8.2svh),76px)}
+  .lead{font-size:clamp(16px,min(1.9vw,2.7svh),20px)}
+  .sec .in > .eyebrow + h2,.cab .eyebrow + h2{margin-top:clamp(8px,1.6svh,14px)}
+  .cab h2 + .lead{margin-top:clamp(10px,2svh,18px)}
+  /* Título a la izquierda y bajada a la derecha: ahorra una franja de alto */
+  .cab.doble{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);column-gap:clamp(32px,5vw,72px);align-items:end}
+  .cab.doble > *{grid-column:1}
+  .cab.doble .lead{grid-column:2;grid-row:1/span 2;margin-top:0}
+
+  /* Hero */
+  .hero-in{padding-block:clamp(84px,14svh,130px) clamp(24px,5svh,80px);gap:clamp(14px,2.8svh,34px)}
+  .hero h1{font-size:clamp(52px,min(10.5vw,15svh),148px)}
+  .ticket{padding:clamp(12px,2svh,18px) 20px}
+  .ticket b{font-size:clamp(24px,3.8svh,30px)}
+  .dibujo{width:min(760px,62vw,100svh)}
+  @media (max-height:700px){.bajar{display:none}}
+
+  /* Razones: la sección se fija en pantalla y el scroll avanza entre las tres razones */
+  .razones{padding-block:0;height:300svh}
+  .razones > .in{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:var(--pad-sec)}
+  .razones-cab{gap:clamp(8px,1.6svh,16px);margin-bottom:clamp(20px,4svh,56px)}
+  .historia{flex:0 1 620px;min-height:0;grid-template-rows:minmax(0,1fr);align-items:stretch}
+  .visor{position:relative;top:auto;width:100%;height:100%;max-height:620px;align-self:center}
+  .visor .estado{padding:clamp(20px,4svh,40px);gap:clamp(8px,1.6svh,14px)}
+  .anillo-svg{width:auto;height:min(300px,36svh)}
+  .plano-svg{width:auto;height:min(400px,40svh)}
+  .visor .grande{font-size:clamp(90px,min(13vw,20svh),200px)}
+  .meses{width:min(360px,80%,50svh)}
+  .pasos-historia{gap:clamp(14px,3svh,32px);padding:0;align-content:center}
+  .escena{grid-template-rows:auto auto 0fr;cursor:pointer;transition:opacity .5s var(--curva),grid-template-rows .6s var(--curva)}
+  .escena.activo{grid-template-rows:auto auto 1fr;cursor:default}
+  .escena > p{overflow:hidden;min-height:0}
+  .escena:not(.activo):hover{opacity:.55}
+  .escena h3{font-size:clamp(24px,min(3vw,4.6svh),36px)}
+
+  /* Simulador: área y lote lado a lado */
+  .sim{margin-top:clamp(18px,3.4svh,44px)}
+  .sim-controles,.sim-resultado{padding:clamp(20px,3.6svh,36px);gap:clamp(12px,2.4svh,22px)}
+  .sim-controles{grid-template-columns:1fr auto;grid-template-areas:"area lote" "rango rango" "plazo plazo";align-items:end;align-content:center}
+  .sim-controles > div:first-child{grid-area:area}
+  .sim-controles > input{grid-area:rango}
+  .sim-controles > .lote-mini{grid-area:lote}
+  .sim-controles > div:last-child{grid-area:plazo}
+  .area output{font-size:clamp(44px,min(6vw,9svh),72px)}
+  .lote-mini{min-width:190px;height:auto;padding-bottom:26px}
+  .fila-res{padding-bottom:clamp(8px,1.6svh,14px)}
+  .fila-res b{font-size:clamp(22px,min(3vw,4.4svh),34px);line-height:1.15}
+  .sim-resultado .btn{padding-block:clamp(12px,2.2svh,16px)}
+  .fila-res.destacada b{font-size:clamp(28px,min(3.8vw,5.8svh),44px)}
+
+  /* Obra: título junto al antes/después y galería en tira */
+  .obra-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.1fr);gap:clamp(28px,4vw,56px);align-items:end}
+  .comparar{margin:0;width:100%;max-height:48svh}
+  .galeria{margin-top:clamp(18px,3.4svh,40px);padding-bottom:8px}
+  .galeria figure{flex:0 0 auto;height:clamp(150px,24svh,300px);aspect-ratio:4/3}
+
+  /* Ubicación */
+  .ubi > div:first-child{gap:clamp(8px,1.8svh,18px)!important}
+  .crono b{font-size:clamp(56px,min(9vw,13svh),112px)}
+  .cerca{grid-template-columns:1fr 1fr;margin-top:0}
+  .cerca li{padding:clamp(10px,1.6svh,14px) 14px}
+  .mapa{justify-self:center;width:min(100%,calc((100svh - 2 * var(--pad-sec) - 2 * clamp(12px,2vw,20px)) * 600 / 520 + 2 * clamp(12px,2vw,20px)))}
+
+  /* En regla: comparador a lo ancho en tres columnas y documentos en fila */
+  #en-regla h2{font-size:clamp(36px,min(4.6vw,7.6svh),70px)}
+  .regla-grid{grid-template-columns:1fr;margin-top:clamp(18px,3.4svh,44px);gap:clamp(14px,2.6svh,28px)}
+  .comparador{grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr) minmax(0,.8fr);grid-template-rows:auto 1fr;column-gap:clamp(18px,2.4vw,32px);row-gap:clamp(12px,2.2svh,18px);padding:clamp(18px,3.4svh,34px)}
+  .comparador h3{grid-column:1;grid-row:1}
+  .comparador .segmento{grid-column:1;grid-row:2;align-self:start;grid-template-columns:1fr}
+  .comparador .filas{grid-column:2;grid-row:1/span 2;align-content:center}
+  .filas li{padding:clamp(10px,1.6svh,14px) 16px}
+  .foto-plano{grid-column:3;grid-row:1/span 2;min-height:0}
+  .foto-plano .hueco{min-height:0}
+  .regla-docs{grid-template-columns:minmax(0,.9fr) minmax(0,2.4fr);align-items:center;gap:clamp(18px,2.4vw,32px)}
+  .docs{grid-template-columns:repeat(3,1fr)}
+  .doc{min-height:clamp(100px,16svh,128px)}
+  .doc .frente b{font-size:clamp(20px,3.2svh,24px);line-height:1.15}
+
+  /* Formulario */
+  .tarjeta-form{padding:clamp(20px,3.6svh,40px)}
+  .progreso-form{margin-bottom:clamp(14px,2.6svh,24px)}
+  .paso{gap:clamp(12px,2.2svh,18px)}
+  .paso legend{margin-bottom:clamp(8px,1.6svh,14px)}
+  /* Paso 4: nombre y ciudad en la misma fila, WhatsApp debajo a lo ancho */
+  .paso[data-paso="3"].activo{grid-template-columns:1fr 1fr;column-gap:12px}
+  .paso[data-paso="3"] > .campo:nth-of-type(1){grid-column:1;grid-row:1}
+  .paso[data-paso="3"] > .campo:nth-of-type(3){grid-column:2;grid-row:1}
+  .paso[data-paso="3"] > .campo:nth-of-type(2),.paso[data-paso="3"] > .check-legal{grid-column:1/-1}
+  .opcion{padding:clamp(11px,1.8svh,16px) 18px}
+  .campo input,.campo select{padding:clamp(10px,1.6svh,14px) 16px}
+  .form-lado{top:clamp(80px,12svh,120px)}
+
+  /* FAQ: título a la izquierda, preguntas a la derecha */
+  .faq-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:clamp(28px,5vw,72px);align-items:start}
+  .faq{margin-top:0}
+  .faq summary{padding:clamp(14px,2.4svh,20px) 22px}
+}
+
 /* ---------- Otros dispositivos ---------- */
 /* Teléfonos en horizontal y pantallas bajas */
 @media (max-height:520px) and (orientation:landscape){
@@ -523,6 +632,9 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   .escena,.fila-res,.faq details,.doc{break-inside:avoid}
   .escena{opacity:1!important}
   .pasos-historia{gap:14px!important;padding:0!important}
+  .razones{height:auto!important}
+  .razones > .in{position:static!important;height:auto!important}
+  .escena{grid-template-rows:none!important}
   .form-sec,.oscuro{background:#fff;color:var(--tinta)}
 }
 
@@ -692,9 +804,11 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 <!-- ============ SIMULADOR ============ -->
 <section class="sec" id="simulador">
   <div class="in">
-    <p class="eyebrow rv">Haz la cuenta</p>
-    <h2 class="rv" style="--d:.08s">¿Cuánto necesitas para separar?</h2>
-    <p class="lead rv" style="--d:.14s">Mueve el área y elige el plazo. Así se vería tu plan de pagos.</p>
+    <div class="cab doble">
+      <p class="eyebrow rv">Haz la cuenta</p>
+      <h2 class="rv" style="--d:.08s">¿Cuánto necesitas para separar?</h2>
+      <p class="lead rv" style="--d:.14s">Mueve el área y elige el plazo. Así se vería tu plan de pagos.</p>
+    </div>
     <div class="sim">
       <div class="sim-controles rv">
         <div>
@@ -721,10 +835,12 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 
 <!-- ============ ANTES / DESPUÉS ============ -->
 <section class="sec oscuro" id="obra">
-  <div class="in">
-    <p class="eyebrow rv">Avance de obra</p>
-    <h2 class="rv" style="--d:.08s">De tierra a asfalto</h2>
-    <p class="lead rv" style="--d:.14s">Las vías ya están pavimentadas. Arrastra para ver el cambio.</p>
+  <div class="in obra-in">
+    <div class="cab">
+      <p class="eyebrow rv">Avance de obra</p>
+      <h2 class="rv" style="--d:.08s">De tierra a asfalto</h2>
+      <p class="lead rv" style="--d:.14s">Las vías ya están pavimentadas. Arrastra para ver el cambio.</p>
+    </div>
     <div class="comparar rv" id="comparar" style="--d:.1s" role="slider" aria-label="Comparar antes y después de la pavimentación" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
   </div>
   <div class="galeria" id="galeria" aria-label="Galería de la obra"></div>
@@ -786,7 +902,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
         </ul>
         <div class="foto-plano" id="fotoPlano"></div>
       </div>
-      <div style="display:grid;gap:16px;align-content:start">
+      <div class="regla-docs">
         <p class="lead rv">Pide estos documentos en tu visita. Toca cada uno para ver qué es.</p>
         <div class="docs" id="docs"></div>
       </div>
@@ -885,9 +1001,11 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 
 <!-- ============ FAQ ============ -->
 <section class="sec" id="faq">
-  <div class="in">
-    <p class="eyebrow rv">Preguntas frecuentes</p>
-    <h2 class="rv" style="--d:.08s">Lo que casi todos preguntan</h2>
+  <div class="in faq-in">
+    <div class="cab">
+      <p class="eyebrow rv">Preguntas frecuentes</p>
+      <h2 class="rv" style="--d:.08s">Lo que casi todos preguntan</h2>
+    </div>
     <div class="faq">
       <details class="rv"><summary>¿Cuánto necesito para separar un lote?</summary><p class="resp">El 30 % del valor del lote. Por ejemplo, en el Lote 27 ($87.480.000) son $26.244.000. Usa el simulador de arriba para hacer la cuenta con otra área.</p></details>
       <details class="rv"><summary>¿Cómo funciona la financiación directa?</summary><p class="resp">Después de separar, el saldo lo pagas directamente a la constructora hasta en 12 meses, sin pasar por un banco. Un asesor te explica los requisitos y las condiciones según tu caso.</p></details>
@@ -1079,15 +1197,25 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
     estados.forEach(function(e, j){ e.classList.toggle('activo', j === n); });
     arco.style.strokeDasharray = n === 0 ? '150.8 502.65' : '0 502.65';
   }
+  // En escritorio la sección queda fija en pantalla: el avance del scroll dentro de ella elige la razón
+  var razones = $('#razones');
+  function avanceRazones(){
+    var r = razones.getBoundingClientRect();
+    return { r: r, p: Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - innerHeight))) };
+  }
   function revisarEscenas(){
     if (innerWidth < 980) return;
-    var mitad = innerHeight * .55, n = 0;
-    escenas.forEach(function(e, j){ if (e.getBoundingClientRect().top < mitad) n = j; });
-    activarEscena(n);
-    var h = $('.pasos-historia').getBoundingClientRect();
-    var p = Math.min(1, Math.max(0, (innerHeight * .5 - h.top) / (h.height - innerHeight * .4)));
-    $('#barraVisor').style.width = (p * 100) + '%';
+    var a = avanceRazones();
+    activarEscena(Math.min(escenas.length - 1, Math.floor(a.p * escenas.length)));
+    $('#barraVisor').style.width = (a.p * 100) + '%';
   }
+  escenas.forEach(function(e, j){
+    e.addEventListener('click', function(){
+      if (innerWidth < 980 || j === escenaActual) return;
+      var a = avanceRazones();
+      scrollBy({ top: a.r.top + (a.r.height - innerHeight) * (j + .5) / escenas.length, behavior: sinMov ? 'auto' : 'smooth' });
+    });
+  });
   setTimeout(function(){ arco.style.strokeDasharray = '150.8 502.65'; }, 400);
 
   /* ---------------- Simulador ---------------- */
